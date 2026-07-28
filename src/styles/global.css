@@ -1,0 +1,82 @@
+@import 'tailwindcss';
+
+@font-face {
+	font-family: 'Absans';
+	src: url('/Absans-Regular.otf') format('opentype');
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+}
+
+@theme {
+	--font-sans: 'Absans', 'Helvetica Neue', Arial, sans-serif;
+
+	--color-canvas: #f7f9fc;
+	--color-panel: #eef3f9;
+	--color-ink: #101c2d;
+	--color-muted: #5d6b7e;
+	--color-line: #dbe3ed;
+	--color-accent: #2563eb;
+	--color-accent-dark: #1d4ed8;
+}
+
+:root {
+	color-scheme: light;
+	text-rendering: optimizeLegibility;
+}
+
+html {
+	min-width: 320px;
+	scroll-behavior: smooth;
+	background: var(--color-canvas);
+}
+
+body {
+	margin: 0;
+	min-width: 320px;
+}
+
+::selection {
+	color: white;
+	background: var(--color-accent);
+}
+
+.page-shell::before {
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	content: '';
+	background:
+		radial-gradient(
+			circle at 83% 21%,
+			rgb(219 234 254 / 72%),
+			transparent 24rem
+		),
+		linear-gradient(to bottom, #ffffff 0%, var(--color-canvas) 44rem);
+}
+
+.visual-grid {
+	background-image:
+		linear-gradient(rgb(219 227 237 / 50%) 1px, transparent 1px),
+		linear-gradient(90deg, rgb(219 227 237 / 50%) 1px, transparent 1px);
+	background-size: 32px 32px;
+}
+
+.brand-mark {
+	background-image: url('/favicon.png');
+	background-position: center;
+	background-size: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+	}
+}

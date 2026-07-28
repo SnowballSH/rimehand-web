@@ -1,43 +1,89 @@
-# Astro Starter Kit: Minimal
+# Rimehand
+
+> One robot. Any game.
+
+Rimehand is an exploration into a generalist board-game-playing robot—one
+system designed to see, reason, and play across the table.
+
+[Avalanche](https://github.com/SnowballSH/Avalanche), our open-source chess
+engine, is the first focused product under that broader ambition.
+
+The landing page is configured to publish at
+[rimehand.snowballsh.com](https://rimehand.snowballsh.com).
+
+## Technology
+
+- [Astro](https://astro.build) for static site generation
+- [Tailwind CSS](https://tailwindcss.com) for styling
+- TypeScript for project-level type checking
+- GitHub Pages for hosting
+- pnpm as the sole package manager
+
+The site intentionally uses no client-side framework or JavaScript island.
+
+## Development
+
+Requirements:
+
+- Node.js 22.22.3+, 24.16.0+, or 26.3.0+ on a supported release line
+- pnpm 11.5.1
+
+Install dependencies and start the development server:
 
 ```sh
-pnpm create astro@latest -- --template minimal
+pnpm install
+pnpm dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The local site is available at `http://localhost:4321` by default.
 
-## 🚀 Project Structure
+### Commands
 
-Inside of your Astro project, you'll see the following folders and files:
+| Command             | Purpose                                           |
+| :------------------ | :------------------------------------------------ |
+| `pnpm dev`          | Start the local Astro development server          |
+| `pnpm build`        | Create the production build in `dist/`            |
+| `pnpm preview`      | Preview the production build locally              |
+| `pnpm lint`         | Run ESLint with warnings treated as errors        |
+| `pnpm format`       | Format supported files with Prettier              |
+| `pnpm format:check` | Verify formatting without changing files          |
+| `pnpm typecheck`    | Check TypeScript and Astro templates              |
+| `pnpm check`        | Run lint, formatting, and type checks             |
+| `pnpm ci`           | Run every required check and the production build |
+
+Run `pnpm ci` before opening a pull request.
+
+## Project structure
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+.
+├── .github/workflows/   # Validation and GitHub Pages deployment
+├── public/              # Font, favicon, social card, and custom-domain file
+├── src/pages/           # Astro routes
+├── src/styles/          # Tailwind entry point and theme tokens
+├── astro.config.mjs     # Astro, Tailwind, and production-site configuration
+└── package.json         # pnpm scripts and dependency versions
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+The configurable color and typography tokens live in
+`src/styles/global.css`. The page content and metadata live in
+`src/pages/index.astro`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Astro template checks run in a small private workspace package pinned to
+TypeScript 6, the latest version supported by Astro's checker. Project-level
+TypeScript remains pinned to TypeScript 7.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Deployment
 
-## 🧞 Commands
+Pushes to `main` are validated, built, and deployed through GitHub Actions.
+Pull requests and non-`main` pushes run the same strict checks without
+deploying.
 
-All commands are run from the root of the project, from a terminal:
+The deployment expects GitHub Pages to use GitHub Actions as its source. The
+custom domain is configured as `rimehand.snowballsh.com` through `public/CNAME`
+and `astro.config.mjs`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+## Contact
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Questions about Rimehand can be sent to
+[yinuo@snowballsh.com](mailto:yinuo@snowballsh.com).

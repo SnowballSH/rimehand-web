@@ -1,17 +1,41 @@
 {
   "name": "rimehand-web",
+  "description": "The landing page for Rimehand: one robot, any game.",
+  "private": true,
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@11.5.1",
+  "homepage": "https://rimehand.snowballsh.com",
   "engines": {
-    "node": ">=22.12.0"
+    "node": "^22.22.3 || ^24.16.0 || >=26.3.0"
   },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "lint": "eslint \"src/**/*.{astro,js,ts}\" \"*.config.{js,mjs}\" --max-warnings=0",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "typecheck": "pnpm run typecheck:ts && pnpm run typecheck:astro",
+    "typecheck:ts": "tsc --noEmit",
+    "typecheck:astro": "pnpm --dir tools/astro-check exec astro check --root ../.. --minimum-failing-severity warning",
+    "check": "pnpm run lint && pnpm run format:check && pnpm run typecheck",
+    "ci": "pnpm run check && pnpm run build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "astro": "^7.1.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@tailwindcss/vite": "4.3.3",
+    "eslint": "10.8.0",
+    "eslint-plugin-astro": "3.0.1",
+    "globals": "17.8.0",
+    "prettier": "3.9.6",
+    "prettier-plugin-astro": "0.14.1",
+    "prettier-plugin-tailwindcss": "0.8.1",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2"
   }
 }

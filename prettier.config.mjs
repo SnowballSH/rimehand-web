@@ -1,0 +1,21 @@
+/** @type {import('prettier').Config & import('prettier-plugin-tailwindcss').PluginOptions} */
+export default {
+	useTabs: true,
+	singleQuote: true,
+	plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
+	tailwindStylesheet: './src/styles/global.css',
+	overrides: [
+		{
+			files: '*.astro',
+			options: {
+				parser: 'astro',
+			},
+		},
+		{
+			files: '*.{json,yml,yaml}',
+			options: {
+				useTabs: false,
+			},
+		},
+	],
+};

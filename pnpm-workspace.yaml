@@ -1,5 +1,9 @@
+packages:
+  - tools/astro-check
+
 allowBuilds:
   esbuild: true
   sharp: true
 minimumReleaseAgeExclude:
   - astro@7.1.4
+  - '@astrojs/check@0.9.10'
